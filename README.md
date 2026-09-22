@@ -22,6 +22,15 @@ Garantir a qualidade, integridade e correto funcionamento dos fluxos de autentic
 | **CT03** | Login com Falha | Valida a mensagem de erro ao tentar realizar login com credenciais inválidas ou inexistentes. |
 | **CT04** | Logout do Sistema | Valida o encerramento de sessão. Utiliza injeção de token JWT em background (`localStorage`) para bypass de autenticação. |
 
+## Gestão do Projeto e Processos Ágeis
+
+O planejamento, especificação e ciclo de vida dos testes foram gerenciados utilizando o **GitHub Projects (Kanban)**:
+
+- **Casos de Teste Imperativos:** Mapeados em formato de *Issues* no GitHub com critérios de aceitação e passos de reprodução.
+- **Git Branching Workflow:** Desenvolvimento isolado por funcionalidade através de *Feature Branches* (`feat/CT0x-...`), integrado à `main` via *Pull Requests*.
+- **Fluxo Kanban:** Acompanhamento do progresso das tarefas nas colunas `Backlog`, `Ready`, `In progress`, `In review` e `Done`.
+
+
 ## Estrutura do Projeto
 
 ```text
