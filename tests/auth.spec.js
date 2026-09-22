@@ -1,9 +1,8 @@
-// 1. Imports
 import { test, expect } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 
-// 2. Helper Functions
+// Helper Functions
 function getNextUserNumber() {
   const filePath = path.resolve('counter.json');
   let currentNumber = 1;
@@ -18,7 +17,11 @@ function getNextUserNumber() {
   return currentNumber;
 }
 
-// 3. Test Suite
+//
+// Tests suite
+//
+
+// [CT01] Register a new user
 test.describe('Authentication - Serverest', () => {
 
   test('Should register a new user successfully', async ({ page }) => {
@@ -30,15 +33,53 @@ test.describe('Authentication - Serverest', () => {
     const randomUser = `testqav${userNumber}`;
     const randomEmail = `testqav${userNumber}@email.com`;
 
+    await page.waitForTimeout(2000);
     await page.getByTestId('nome').fill(randomUser);
+    await page.waitForTimeout(2000);
     await page.getByTestId('email').fill(randomEmail);
+    await page.waitForTimeout(2000);
     await page.getByTestId('password').fill('testqa26');
+    await page.waitForTimeout(2000);
     await page.getByTestId('checkbox').check();
+    await page.waitForTimeout(2000);
     await page.getByTestId('cadastrar').click();
+    await page.waitForTimeout(5000);
 
     // Validate successful registration
     await expect(page).toHaveURL('https://front.serverest.dev/admin/home');
     await expect(page.getByText(/bem vindo/i)).toBeVisible();
+    await page.waitForTimeout(5000);
   });
-  
+
+  // [CT02] Login with valid credentials
+    test('Should login with valid credentials', async ({ page }) => {
+
+    // Get incremental number for login form
+    const userNumber = getNextUserNumber() -1;
+    const randomEmail = `testqav${userNumber}@email.com`;
+    
+    // Navigate to login page
+    await page.goto('https://front.serverest.dev/login');
+    await page.waitForTimeout(2000);
+    await page.getByTestId('email').click();
+    await page.waitForTimeout(2000);
+    await page.getByTestId('email').fill(randomEmail);
+    await page.waitForTimeout(2000);
+    await page.getByTestId('senha').click();
+    await page.waitForTimeout(2000);
+    await page.getByTestId('senha').fill('testqa26');
+    await page.waitForTimeout(2000);
+    await page.getByTestId('entrar').click();
+    await page.waitForTimeout(5000);
+
+    // Validate successful login
+    await expect(page).toHaveURL('https://front.serverest.dev/admin/home');
+    await expect(page.getByText(/bem vindo/i)).toBeVisible();
+    await page.waitForTimeout(5000);
+  });
+
+  // [CT03]
+
+  // [CT04]
+
 });
