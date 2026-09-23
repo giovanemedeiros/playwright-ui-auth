@@ -34,7 +34,6 @@ O planejamento, especificação e ciclo de vida dos testes foram gerenciados uti
 ## Estrutura do Projeto
 
 ```text
-(1) playwright-ui-auth/
 ├── tests/
 │   └── auth.spec.js      # Suíte de testes E2E de Autenticação
 ├── counter.json          # Persistência de contador incremental de massa
